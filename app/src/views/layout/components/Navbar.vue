@@ -38,11 +38,7 @@ export default {
     },
 
     mounted() {
-        getMenu().then(res =>{
-            console.log(res)
-        }).catch(err =>{
-
-        })
+        
     },
 
     methods: {
