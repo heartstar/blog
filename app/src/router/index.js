@@ -16,6 +16,14 @@ export const asyncRouterMap = [
             {path: 'welcome', component: _import('welcome/index'), name: 'welcome', meta: {title: 'welcome', noCache: true}}
         ]
     },
+
+    //admin管理后台
+    {
+        path: '/admin', component: _import('admin/index'),
+        children: [
+            //{path: 'admin', component: _import('admin/index'), name: 'welcome', meta: {title: 'welcome', noCache: true}}
+        ]
+    },
 ]
 
 export default new Router({
