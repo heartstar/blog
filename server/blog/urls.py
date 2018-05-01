@@ -1,12 +1,10 @@
 #coding:utf8
-from django.urls import path
+
+from django.conf.urls import url
 from . import views
 
 
 urlpatterns = [
-    path('', views.Index),
-    path('blog/', views.Blog, name='blog'),
-    path('detail/<int:id>', views.Detail, name='detail'),
-    path('search/', views.Search, name='search'),
-    path('tool/', views.Tools, name='tool'),
+    url(r'^api/menu', views.Menu_list),
+    url(r'^api/article', views.Article_list),
 ]
