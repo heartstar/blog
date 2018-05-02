@@ -1,4 +1,5 @@
 
+
 export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
     type = type.toUpperCase()
     url = process.env.BASE_API + url
@@ -30,7 +31,6 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
             })
         }
         try {     
-
             const response = await fetch(url, requestConfig)
             const responseJson = await response.json()
 

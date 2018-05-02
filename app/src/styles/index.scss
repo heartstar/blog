@@ -10,6 +10,36 @@
     width: 100px;
 }
 
+.btns{
+    padding: 20px;
+}
+
+.el-table {
+    .el-input.is-disabled .el-input__inner{
+        background-color: rgba(255, 255, 255, 0) ;
+        border-color: rgba(255, 255, 255, 0) ;
+        color: #5a5e66 ;
+        padding: 0;
+        font-size: 14px;
+    }
+    .el-date-editor .el-input__inner[disabled]{
+        border: none;
+        padding: 0;
+        background: rgba(255, 255, 255, 0);
+    }
+    .el-input__inner[disabled]+.el-input__prefix{
+        display: none;
+    }
+    .is-disabled .el-input__suffix{
+        display: none;
+    }
+}
+
+.el-table+.el-pagination{
+    margin-top: 20px;
+    text-align: right;
+}
+
 
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
 ::-webkit-scrollbar {

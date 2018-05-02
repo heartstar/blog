@@ -3,11 +3,11 @@
         <el-tab-pane label="首页配置" name="menu">
             <admin-menu></admin-menu>
         </el-tab-pane>
-        <el-tab-pane label="配置管理">
-            
+        <el-tab-pane label="文章">
+            <admin-article></admin-article>
         </el-tab-pane>
-        <el-tab-pane label="角色管理">
-            
+        <el-tab-pane label="图片">
+            <admin-image></admin-image>
         </el-tab-pane>
         <el-tab-pane label="定时任务补偿">
             
@@ -18,11 +18,15 @@
 <script>
 
 import adminMenu from '@/views/admin/menu'
+import adminArticle from '@/views/admin/article'
+import adminImage from '@/views/admin/image'
 
 export default {
     name: 'adminIndex',
     components:{
         adminMenu,
+        adminArticle,
+        adminImage
     },
 
     data() {
