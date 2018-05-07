@@ -9,6 +9,7 @@ from .serializers import MenuSerializer, ArticleSerializer
 from django.core.paginator import Paginator ,PageNotAnInteger ,EmptyPage  #分页
 import json
 from django.views.decorators.csrf import csrf_exempt #解决跨域
+from django.db.models import F, Q
 
 
 
@@ -31,11 +32,13 @@ def Article_add(request):
         title = req['title']
         show = int(req['show'])
         content = req['content']
+        keyword = req['keyword']
+        art_id = req.get('id') 
 
-        if Article.objects.filter(id=req['id']):
-            models.Article.objects.filter(id=req['id']).update(category = category, title = title, show = show, content = content)
+        if art_id:
+            models.Article.objects.filter(id=art_id).update(category = category, keyword = keyword, title = title, show = show, content = content)
         else:
-            models.Article.objects.create(category = category, title = title, show = show, content = content)
+            models.Article.objects.create(category = category, title = title, keyword = keyword, show = show, content = content)
 
         return Response({'data':'成功', 'code':200})
 
@@ -45,9 +48,16 @@ def Article_add(request):
 def Article_query(request):
 
     if request.method == 'GET':
-        articles = Article.objects.all()
-        articlesTotal = Article.objects.count() 
-        paginator = Paginator(articles, request.GET.get('pageSize'))
+
+        category_id = request.GET.get('paramsId')
+
+        if (category_id != 'undefined'):
+            articles = Article.objects.filter(category=int(category_id)).order_by('-update_time')
+        else:
+            articles = Article.objects.all().order_by('-update_time')
+
+        articlesTotal = articles.count() 
+        paginator = Paginator(articles, int(request.GET.get('pageSize')))
         
 
         try:
@@ -59,6 +69,29 @@ def Article_query(request):
 
         serializer = ArticleSerializer(articless, many=True)
         return Response({'data':serializer.data, 'total':articlesTotal, 'code':200})
+
+
+@csrf_exempt
+@api_view(['GET'])
+def Article_search(request):
+    print(request.GET.get('str'))
+    search_str = request.GET.get('str')
+    strs = Article.objects.filter(Q(keyword__icontains=search_str) | Q(title__icontains=search_str) | Q(content__icontains=search_str))
+    articlesTotal = strs.count() 
+    serializer = ArticleSerializer(strs, many=True)
+    return Response({'data':serializer.data, 'total':articlesTotal, 'code':200})
+
+
+@csrf_exempt
+@api_view(['GET'])
+def Article_detail(request):
+
+    if request.method == 'GET':
+        art_id = int(request.GET.get('id'))
+        detail = models.Article.objects.filter(id=art_id)
+        models.Article.objects.filter(id=art_id).update(visits = F('visits') + 1)
+        serializer = ArticleSerializer(detail, many=True)
+        return Response({'data':serializer.data, 'code':200})
 
 
 @csrf_exempt

@@ -19,6 +19,7 @@ class Article(models.Model):
     show = models.BooleanField(u'展示', default=True)     #是否显示
     visits = models.PositiveIntegerField(u'阅读量', default=0)     #访问次数
     update_time = models.DateTimeField(u'更新时间',auto_now=True, null=True)
+    keyword = models.CharField(u'关键字', max_length = 100, default='')
     content = models.TextField(blank=True, null=True)
 
     def __unicode__(self):

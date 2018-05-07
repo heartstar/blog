@@ -1,18 +1,21 @@
 <template>
-    <el-tabs v-model="activeName" type="border-card">
-        <el-tab-pane label="首页配置" name="menu">
-            <admin-menu></admin-menu>
-        </el-tab-pane>
-        <el-tab-pane label="文章">
-            <admin-article></admin-article>
-        </el-tab-pane>
-        <el-tab-pane label="图片">
-            <admin-image></admin-image>
-        </el-tab-pane>
-        <el-tab-pane label="定时任务补偿">
-            
-        </el-tab-pane>
-    </el-tabs>
+    <section>
+        <router-link :to="{path: '/'}" style="padding:20px 0;display: inline-block;"><el-button type="success" size="mini">去主页</el-button></router-link>
+        <el-tabs v-model="activeName" type="border-card">
+            <el-tab-pane label="首页配置" name="menu">
+                <admin-menu></admin-menu>
+            </el-tab-pane>
+            <el-tab-pane label="文章">
+                <admin-article></admin-article>
+            </el-tab-pane>
+            <el-tab-pane label="图片">
+                <admin-image></admin-image>
+            </el-tab-pane>
+            <el-tab-pane label="待定">
+                
+            </el-tab-pane>
+        </el-tabs>
+    </section>   
 </template>
 
 <script>
@@ -37,7 +40,7 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
 
 </style>
 

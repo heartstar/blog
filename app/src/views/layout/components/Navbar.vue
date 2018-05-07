@@ -1,31 +1,21 @@
 <template>
-    <div class="menu">
+    <div class="menu" ref="elMenu">
         <el-menu
-            :default-active="activeIndex2"
+            :default-active="activeIndex"
             class="el-menu-demo"
-            mode="horizontal"
+            mode="horizontal"   
             @select="handleSelect"
             background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b">
-            <el-menu-item index="1">首页</el-menu-item>
+            <el-menu-item index="1"><router-link :to="{path: '/'}" >首页</router-link></el-menu-item>
             <el-submenu index="2">
                 <template slot="title">随手小记</template>
-                    <el-submenu index="2-1">
-                        <template slot="title">web前端</template>
-                        <el-menu-item index="2-1-1">vue</el-menu-item>
-                        <el-menu-item index="2-1-2">css</el-menu-item>
-                        <el-menu-item index="2-1-3">javascript</el-menu-item>
-                    </el-submenu>
-                    <el-submenu index="2-2">
-                        <template slot="title">python</template>
-                        <el-menu-item index="2-2-1">django</el-menu-item>
-                        <el-menu-item index="2-2-2">tornado</el-menu-item>
-                    </el-submenu>
-                    <el-menu-item index="2-3">web mobile</el-menu-item>
+                    <el-menu-item index="2-1"><router-link :to="{path: '/article'}" >全部</router-link></el-menu-item>
+                    <el-menu-item v-for="(item, index) in menus" :key="index" index="2-" :data-code=item.code><router-link :to="{path: '/article/type/'+ item.code}" >{{ item.caption }}</router-link></el-menu-item>
             </el-submenu>
-            <el-menu-item index="3">在路上</el-menu-item>
-            <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+            <el-menu-item index="3">小工具</el-menu-item>
+            <el-menu-item index="4">在路上</el-menu-item>
         </el-menu>
     </div>
 </template>
@@ -35,19 +25,38 @@ import { getMenu } from '@/api/getData'
 export default {
     data() {
         return {
-        activeIndex: '1',
-        activeIndex2: '1'
+            activeIndex: '1',
+            menus: null,
         };
     },
 
-    mounted() {
-        
+    mounted () {
+        // window.addEventListener('scroll', this.handleScroll)
+    },
+
+    created() {
+        getMenu().then(res =>{
+            this.menus = res.data;
+        }).catch(err =>{})
     },
 
     methods: {
+        handleScroll(){
+           
+        },
+
         handleSelect(key, keyPath) {
-            console.log(key, keyPath);
-        }
+            
+        },
     }
 }
 </script>
+<style lang="scss" scoped>
+a{
+    color: #fff;
+}
+.el-menu--horizontal a{
+    display: inline-block;
+    width: 100%;
+}
+</style>

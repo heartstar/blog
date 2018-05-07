@@ -34,13 +34,19 @@
                         <el-date-picker v-model="scope.row.update_time" size="mini" type="datetime" disabled placeholder=""></el-date-picker>
                     </template>
                 </el-table-column>
-                <el-table-column
-                    prop="title"
-                    label="标题">
+                <el-table-column label="标题">
+                    <template slot-scope="scope">
+                        <span>{{ scope.row.title.substring(0, 80)+'...' }}</span>
+                    </template>
                 </el-table-column> 
                 <el-table-column
-                    prop="content"
-                    label="内容">
+                    prop="keyword"
+                    label="关键字">
+                </el-table-column> 
+                <el-table-column label="内容">
+                    <template slot-scope="scope">
+                        <span>{{ scope.row.content.substring(0, 50)+'...' }}</span>
+                    </template>
                 </el-table-column>
             </el-table>
             <el-pagination
@@ -53,7 +59,7 @@
         <div v-show="showData">
             <div class="btns">
                 <el-button type="success" size="mini" class="save" @click="saveData()">保存</el-button>
-                <el-button size="mini" @click="showData = false;">取消</el-button>
+                <el-button size="mini" @click="cancel">取消</el-button>
             </div>
             <el-form ref="form" :model="form" label-width="80px" :rules="rules">
                 <el-form-item label="类别" prop="category">
@@ -63,7 +69,10 @@
                 </el-form-item>
                 <el-form-item label="标题" prop="title">
                     <el-input v-model="form.title" size="mini"></el-input>
-                </el-form-item>     
+                </el-form-item>   
+                <el-form-item label="关键字" prop="keyword">
+                    <el-input v-model="form.keyword" size="mini"></el-input>
+                </el-form-item>  
                 <!-- <el-form-item label="编辑器">
                     <el-radio v-model="radio" label="markdown">markdown</el-radio>
                     <el-radio v-model="radio" label="richText">富文本</el-radio>
@@ -72,8 +81,10 @@
                      <el-checkbox v-model="form.show"></el-checkbox>
                 </el-form-item> 
                 <el-form-item label="内容" prop="content">
-                    <markdown-editor id="contentEditor" ref="contentEditor" v-model="form.content" :height="300" :zIndex="20"></markdown-editor>
+                    <markdown-editor id="contentEditor" ref="contentEditor" preview-class="markdown-body" v-model="form.content" :height="300" :zIndex="20" @input="markdown2Html"></markdown-editor>
                 </el-form-item>  
+                <el-button @click="markdown2Html" style="margin-top:80px;" type="primary" icon="el-icon-document">转为HTML</el-button>
+                <div v-html="html"></div>
             </el-form>
         </div>
     </div>
@@ -96,10 +107,13 @@ export default {
             types: null,
             showData: false,
             radio: 'markdown',
+            html: '',
             form: {
                 show: true,
+                content: '',
             },
             page: {
+                paramsId: undefined,
                 pageNum: 1,
                 pageSize: 10,
                 total: null,
@@ -109,10 +123,13 @@ export default {
                     { required: true, message: '请选择文章类别', trigger: 'change' }
                 ],
                 title: [
-                    { required: true, message: '请填写活动形式', trigger: 'blur' }
+                    { required: true, message: '请填写文章标题', trigger: 'blur' }
+                ],
+                keyword: [
+                    { required: true, message: '请填写关键字', trigger: 'blur' }
                 ],
                 content: [
-                    { required: true, message: '请填写活动形式', trigger: 'blur' }
+                    { required: true, message: '请填写文章内容', trigger: 'blur' }
                 ]
             } 
         }
@@ -155,6 +172,7 @@ export default {
             this.$refs.form.resetFields(); 
             this.form = {};   
             this.form.show = true;
+            this.form.content = '';
             this.showData = true;
         },
 
@@ -183,15 +201,31 @@ export default {
             this.selected = row;
         },
 
+        cancel(){
+            this.showData = false;
+            this.init();
+        },
+
         handleCurrentChange(index){
             this.page.pageNum = index;
             this.init();
         },
+
+        markdown2Html(){
+            import('showdown').then(showdown => {
+                const converter = new showdown.Converter()
+                this.html = converter.makeHtml(this.form.content)
+            })
+        },
     }
 }
+//vue-simplemde
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
+    @import '~github-markdown-css';
 </style>
+
+
+
 

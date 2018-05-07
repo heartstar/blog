@@ -3,7 +3,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-    margin-top: 60px;
+    margin-top: 15px;
 }
 
 .el-form-item__label{
@@ -38,6 +38,27 @@
 .el-table+.el-pagination{
     margin-top: 20px;
     text-align: right;
+}
+
+.el-input.is-disabled .el-input__inner{
+    border: none;
+    padding: 0;
+    width: 114px;
+    position: relative;
+    right: 5px;
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+
+.el-input.is-disabled .el-input__inner+.el-input__prefix{
+    display: none;
+}
+
+.el-input.is-disabled{
+    width: auto;
+}
+
+a{
+    text-decoration: none; 
 }
 
 

@@ -1,4 +1,4 @@
-
+import store from '@/store'
 
 export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
     type = type.toUpperCase()
@@ -30,12 +30,19 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
                 value: JSON.stringify(data)
             })
         }
-        try {     
+        try {    
+            
+            if (url.indexOf('save') !== -1 || url.indexOf('add') !== -1 || url.indexOf('delete') !== -1) {
+                store.dispatch('setLoading', true);
+            } 
+            
             const response = await fetch(url, requestConfig)
             const responseJson = await response.json()
 
             if(responseJson.code == 200){
-
+                setTimeout(() => {
+                    store.dispatch('setLoading', false)
+                }, 500)
                 return Promise.resolve(responseJson)
             }else{
 

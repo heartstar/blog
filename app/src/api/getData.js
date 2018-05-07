@@ -15,6 +15,16 @@ export const getArticle = (json) =>{
     return request('/blog/api/article/query', json);
 }
 
+/*搜索文章*/
+export const searArticle = (json) =>{
+    return request('/blog/api/article/search', json);
+}
+
+/*获取文章详情*/
+export const getArticleDetail = (json) =>{
+    return request('/blog/api/article/detail', json);
+}
+
 /*删除文章*/
 export const delArticle = (id) =>{
     return request('/blog/api/article/delete?id='+ id);

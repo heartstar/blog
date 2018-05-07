@@ -1,7 +1,8 @@
 <template>
-    <div class="simplemde-container" :style="{height:height+'px',zIndex:zIndex}">
-        <textarea :id="id"></textarea>
-    </div>
+  <div class="simplemde-container" :style="{height:height+'px',zIndex:zIndex}">
+    <textarea :id="id">
+    </textarea>
+  </div>
 </template>
 
 <script>
@@ -14,26 +15,26 @@ export default {
     props: {
         value: String,
         id: {
-            type: String
+        type: String
         },
         autofocus: {
-            type: Boolean,
-            default: false
+        type: Boolean,
+        default: false
         },
         placeholder: {
-            type: String,
-            default: ''
+        type: String,
+        default: ''
         },
         height: {
-            type: Number,
-            default: 150
+        type: Number,
+        default: 150
         },
         zIndex: {
-            type: Number,
-            default: 10
+        type: Number,
+        default: 10
         },
         toolbar: {
-            type: Array
+        type: Array
         }
     },
     data() {
@@ -64,6 +65,7 @@ export default {
         if (this.value) {
             this.simplemde.value(this.value)
         }
+
         this.simplemde.codemirror.on('change', () => {
             if (this.hasChange) {
                 this.hasChange = true
@@ -71,14 +73,14 @@ export default {
             this.$emit('input', this.simplemde.value())
         })
     },
-
     destroyed() {
         this.simplemde = null
     }
 }
 </script>
 
-<style>
+<style lang="scss">
+@import 'simplemde/dist/simplemde.min.css';
 .simplemde-container .CodeMirror {
   min-height: 150px;
 }

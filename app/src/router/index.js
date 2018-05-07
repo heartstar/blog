@@ -13,15 +13,26 @@ export const asyncRouterMap = [
     {
         path: '', component: Layout, redirect: 'welcome',
         children: [
-            {path: 'welcome', component: _import('welcome/index'), name: 'welcome', meta: {title: 'welcome', noCache: true}}
+            {path: 'welcome', component: _import('welcome/index'), name: 'welcome', meta: {title: 'welcome', keepAlive: false}}
         ]
     },
+
+    //文章
+    {
+        path: '/article', component: Layout,
+        children: [
+            {path: '', component: _import('article/articleList'), name: 'articleList', meta: {title: 'articleList', keepAlive: false}},
+            {path: 'type/:id/', component: _import('article/articleList'), name: 'articleList', meta: {title: 'articleList', keepAlive: false}},
+            {path: 'detail', component: _import('article/detail'), name: 'detail', meta: {title: 'detail', keepAlive: false}}
+        ]
+    },
+
 
     //admin管理后台
     {
         path: '/admin', component: _import('admin/index'),
         children: [
-            //{path: 'admin', component: _import('admin/index'), name: 'welcome', meta: {title: 'welcome', noCache: true}}
+            //{path: 'admin', component: _import('admin/index'), name: 'welcome', meta: {title: 'welcome', keepAlive: false}}
         ]
     },
 ]
