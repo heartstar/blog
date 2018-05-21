@@ -14,8 +14,8 @@
                     <el-menu-item index="2-1"><router-link :to="{path: '/article'}" >全部</router-link></el-menu-item>
                     <el-menu-item v-for="(item, index) in menus" :key="index" index="2-" :data-code=item.code><router-link :to="{path: '/article/type/'+ item.code}" >{{ item.caption }}</router-link></el-menu-item>
             </el-submenu>
-            <el-menu-item index="3">小工具</el-menu-item>
-            <el-menu-item index="4">在路上</el-menu-item>
+            <el-menu-item index="3"><router-link :to="{path: '/toolset'}" >小工具</router-link></el-menu-item>
+            <!-- <el-menu-item index="4">在路上</el-menu-item> -->
         </el-menu>
     </div>
 </template>

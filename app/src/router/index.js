@@ -27,6 +27,14 @@ export const asyncRouterMap = [
         ]
     },
 
+    //小工具
+    {   
+        path: '/tools', component: Layout,
+        children: [
+            {path: '/toolset', component: _import('tools/toolset'), name: 'toolset', meta: {title: 'toolset', keepAlive: false}},
+        ]
+    },
+
 
     //admin管理后台
     {

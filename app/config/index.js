@@ -17,7 +17,6 @@ module.exports = {
         showEslintErrorsInOverlay: false,
         devtool: 'cheap-module-eval-source-map',
         cacheBusting: true,
-
         cssSourceMap: true
     },
 
@@ -26,7 +25,7 @@ module.exports = {
         assetsRoot: path.resolve(__dirname, '../dist'),
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
-        productionSourceMap: true,
+        productionSourceMap: false,
         devtool: '#source-map',
         productionGzip: false,
         productionGzipExtensions: ['js', 'css'],
