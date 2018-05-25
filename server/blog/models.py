@@ -1,4 +1,5 @@
 from django.db import models
+from uuid import uuid1
 
 # Create your models here.
 
@@ -12,7 +13,8 @@ class Menu(models.Model):
 
 
 class Article(models.Model):
-   
+    
+    articleId = models.UUIDField(u'主键', default=str(uuid1()), null=False)
     title = models.CharField(u'标题', max_length = 100)
     category = models.PositiveIntegerField(u'类型', default=0)
     create_date = models.DateTimeField(u"发布日期", auto_now_add = True, editable=True)
@@ -46,8 +48,8 @@ class Image(models.Model):
 
 
 
-# python3 manage.py makemigrations 
-# python3 manage.py migrate  
+# python manage.py makemigrations 
+# python manage.py migrate  
     
 
  

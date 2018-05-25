@@ -1,6 +1,6 @@
 <template>
     <div>
-        888888
+        暂无
     </div>
 </template>
 

@@ -29,6 +29,7 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': ('rest_framework.pagination.PageNumberPagination',),
     'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',),
     # 'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',), //权限验证
     'PAGE_SIZE': 10
@@ -101,14 +102,29 @@ WSGI_APPLICATION = 'server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'blog',
+#         'USER': 'root',  
+#         # 'PASSWORD': 'dengxia',  
+#         'PASSWORD': 'root', 
+#         'HOST': '127.0.0.1',  
+#         'PORT': '3306', 
+#         'CHARSET': 'utf8',
+#         'OPTIONS':{
+#             'init_command':"SET sql_mode='STRICT_TRANS_TABLES', character_set_connection=utf8",
+#         },
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog',
-        'USER': 'root',  
-        # 'PASSWORD': 'dengxia',  
-        'PASSWORD': 'root', 
-        'HOST': '127.0.0.1',  
+        'NAME': 'amortop_blog',
+        'USER': 'amortop_root',  
+        'PASSWORD': 'dengxia0108', 
+        'HOST': '96.44.128.139',  
         'PORT': '3306', 
         'CHARSET': 'utf8',
         'OPTIONS':{

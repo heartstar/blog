@@ -1,7 +1,7 @@
 <template>
     <section>
         <router-link :to="{path: '/'}" style="padding:20px 0;display: inline-block;"><el-button type="success" size="mini">去主页</el-button></router-link>
-        <el-tabs v-model="activeName" type="border-card">
+        <el-tabs v-model="activeName" type="border-card" @tab-click="tabClick">
             <el-tab-pane label="首页配置" name="menu">
                 <admin-menu></admin-menu>
             </el-tab-pane>
@@ -13,7 +13,7 @@
             </el-tab-pane>
             <el-tab-pane label="待定">
                 
-            </el-tab-pane>
+            </el-tab-pane>          
         </el-tabs>
     </section>   
 </template>
@@ -35,6 +35,12 @@ export default {
     data() {
         return {
             activeName: 'menu',
+        }
+    },
+
+    methods: {
+        tabClick(row){
+            console.log(row)
         }
     }
 }

@@ -15,7 +15,7 @@ from django.db.models import F, Q
 
 @api_view(['GET'])
 def Menu_list(request):   
-
+    
     if request.method == 'GET':
         menus = Menu.objects.filter(flag_use=1)
         serializer = MenuSerializer(menus, many=True)
@@ -36,7 +36,7 @@ def Article_add(request):
         art_id = req.get('id') 
 
         if art_id:
-            models.Article.objects.filter(id=art_id).update(category = category, keyword = keyword, title = title, show = show, content = content)
+            models.Article.objects.filter(articleId=art_id).update(category = category, keyword = keyword, title = title, show = show, content = content)
         else:
             models.Article.objects.create(category = category, title = title, keyword = keyword, show = show, content = content)
 
@@ -87,9 +87,9 @@ def Article_search(request):
 def Article_detail(request):
 
     if request.method == 'GET':
-        art_id = int(request.GET.get('id'))
-        detail = models.Article.objects.filter(id=art_id)
-        models.Article.objects.filter(id=art_id).update(visits = F('visits') + 1)
+        art_id = str(request.GET.get('id'))
+        detail = models.Article.objects.filter(articleId=art_id)
+        models.Article.objects.filter(articleId=art_id).update(visits = F('visits') + 1)
         serializer = ArticleSerializer(detail, many=True)
         return Response({'data':serializer.data, 'code':200})
 
@@ -100,19 +100,7 @@ def Article_delete(request):
 
     if request.method == 'GET':
         if request.GET.get('id'):
-            models.Article.objects.filter(id=request.GET.get('id')).delete()
+            models.Article.objects.filter(articleId=request.GET.get('id')).delete()
 
         return Response({'data':'成功', 'code':200})
-
-
-@csrf_exempt
-@api_view(['GET'])
-def Image_delete(request):
-
-    if request.method == 'GET':
-        if request.GET.get('id'):
-            models.Article.objects.filter(id=request.GET.get('id')).delete()
-
-        return Response({'data':'成功', 'code':200})
-
 

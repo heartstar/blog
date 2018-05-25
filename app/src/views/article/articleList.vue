@@ -6,7 +6,7 @@
         <div v-if="(pageTotal)">      
             <div class="cards">
                 <el-card class="box-card" shadow="hover" v-for="(item, index) in dataList" :key="index" >
-                    <div class="text item" @click="goDetail(item.id)">
+                    <div class="text item" @click="goDetail(item.articleId)">
                         <h4>{{ item.title }}</h4>
                         <h6>{{ item.keyword }}</h6>
                         <p>{{ item.content.substring(0, 300)+"..." }}</p>
@@ -27,7 +27,7 @@
         </div>     
         <center class="noHave" v-else>暂无数据</center>
         <el-dialog title="搜索" :visible.sync="searchShow" width="30%">
-            <el-input v-model="searchStr" ref="seCon" placeholder="请输入需要搜索的内容" @keyup.enter.native="onSearch(searchStr)"></el-input>
+            <el-input v-model="searchStr" ref="seCon" placeholder="请输入需要搜索的文章内容" @keyup.enter.native="onSearch(searchStr)"></el-input>
         </el-dialog>
     </div>
 </template>

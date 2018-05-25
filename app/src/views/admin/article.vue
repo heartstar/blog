@@ -2,7 +2,7 @@
     <div class="article">
         <div v-show="!showData" >
             <div class="btns">
-                <el-button type="primary" size="mini" class="add" @click="addData()">新增</el-button>
+                <el-button type="primary" size="mini" class="add" @click="addData">新增</el-button>
                 <el-button type="success" size="mini" :disabled="!Boolean(selected)" class="update" @click="updateData">修改</el-button>
                 <el-button type="danger" size="mini" :disabled="!Boolean(selected)" class="delete" @click="delData">删除</el-button>
             </div>
@@ -58,7 +58,7 @@
         </div>     
         <div v-show="showData">
             <div class="btns">
-                <el-button type="success" size="mini" class="save" @click="saveData()">保存</el-button>
+                <el-button type="success" size="mini" class="save" @click="saveData">保存</el-button>
                 <el-button size="mini" @click="cancel">取消</el-button>
             </div>
             <el-form ref="form" :model="form" label-width="80px" :rules="rules">
@@ -188,7 +188,7 @@ export default {
                 cancelButtonText: '取消',
                 type: 'warning'
                 }).then(() => {
-                    delArticle(this.selected.id).then(res =>{
+                    delArticle(this.selected.articleId).then(res =>{
                         this.$message.success('删除成功');
                         this.init();
                     }).catch(err =>{

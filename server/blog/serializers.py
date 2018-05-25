@@ -11,4 +11,4 @@ class MenuSerializer(serializers.ModelSerializer):
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ('id', 'title', 'visits', 'category', 'keyword', 'show', 'content', 'update_time', 'create_date')
+        fields = ('articleId', 'title', 'visits', 'category', 'keyword', 'show', 'content', 'update_time', 'create_date')

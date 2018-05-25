@@ -11,9 +11,9 @@ import Layout from '../views/layout/Layout'
 export const asyncRouterMap = [
     //首页
     {
-        path: '', component: Layout, redirect: 'welcome',
+        path: '', component: Layout, redirect: 'home',
         children: [
-            {path: 'welcome', component: _import('welcome/index'), name: 'welcome', meta: {title: 'welcome', keepAlive: false}}
+            {path: 'home', component: _import('welcome/index'), name: 'welcome', meta: {title: 'welcome', keepAlive: false}}
         ]
     },
 
@@ -35,13 +35,23 @@ export const asyncRouterMap = [
         ]
     },
 
+    //小游戏
+    {   
+        path: '/games', component: Layout,
+    },
+
 
     //admin管理后台
     {
         path: '/admin', component: _import('admin/index'),
         children: [
-            //{path: 'admin', component: _import('admin/index'), name: 'welcome', meta: {title: 'welcome', keepAlive: false}}
+            // {path: 'login', component: _import('admin/login'), name: 'login', meta: {title: 'login', keepAlive: false}}
         ]
+    },
+
+    //admin登录
+    {
+        path: '/admin/login', component: _import('admin/login'), name: 'login', meta: {title: 'login', keepAlive: false},
     },
 ]
 
