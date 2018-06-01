@@ -1,3 +1,4 @@
+#coding:utf8
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -10,6 +11,7 @@ from django.core.paginator import Paginator ,PageNotAnInteger ,EmptyPage  #分�
 import json
 from django.views.decorators.csrf import csrf_exempt #解决跨域
 from django.db.models import F, Q
+import requests
 
 
 
@@ -103,4 +105,15 @@ def Article_delete(request):
             models.Article.objects.filter(articleId=request.GET.get('id')).delete()
 
         return Response({'data':'成功', 'code':200})
+
+
+@csrf_exempt
+@api_view(['GET'])
+def Msg_send(request):
+
+    if request.method == 'GET':
+        url = 'http://drea.cc/api/chat.php?msg='+ request.GET.get('msg') +'&uid=drea_bbs_chat'
+        ori = requests.get(url).json()
+        return Response({'data':ori, 'code':200})
+
 

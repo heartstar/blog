@@ -2,7 +2,7 @@
     <div class="home-container">
         <el-button size="mini" class="record" @click="dialogFormVisible = true">聊天记录</el-button>
         <div class="msgFig">     
-            <el-input v-model="msg" placeholder="你想问什么呢" @keyup.enter.native="sendData(msg)"></el-input>
+            <el-input v-model="msg" class="msg" placeholder="你想问什么呢" @keyup.enter.native="sendData(msg)"></el-input>
             <p v-if="!loading" class="reMsg">{{ reMsg }}</p>
             <i v-else class="el-icon-loading"></i>
         </div>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-
+import { sendMsg } from '@/api/getData'
 export default {
     name: 'home',
     data() {
@@ -35,42 +35,24 @@ export default {
             loading: false,
             dialogFormVisible: false,
             chatList: [],
-            config:{
-                uid: '5175429989',
-                page: 1
-            }
         }
     },
 
     methods: {
         sendData(msg){
-            let that = this;
-            fetch('https://m.weibo.cn/msg/messages', this.config, 'GET', 'HTTPXML').then((res) => {
+            this.loading = true;
+            this.chatList.push({name:'你', time:new Date(), txt:msg, type:1})
+            sendMsg({'msg': msg}).then(res =>{
                 console.log(res)
-            }).catch(err =>{})
+                this.loading = false;
+                this.reMsg = res.data.reply;
+                this.chatList.push({name:'服务器', time:new Date(), txt:res.data.reply, type:0})
+            }).catch(err =>{
+                this.reMsg = '服务器已断开连接...';
+                this.chatList.push({name:'服务器', time:new Date(), txt:'服务器已断开连接...', type:0})
+                this.loading = false;
+            })
             
-            // if ("WebSocket" in window){
-            //     this.loading = true;
-            //     // let ws = new WebSocket("ws://118.25.40.163:8088");
-            //     let ws = new WebSocket("wss://echo.websocket.org");
-
-            //     ws.onopen = function(){
-            //         ws.send(msg);
-            //         that.chatList.push({name:'你', time:new Date(), txt:msg, type:1})
-            //     }
-
-            //     ws.onmessage = function (evt){ 
-            //         that.reMsg = evt.data;
-            //         that.chatList.push({name:'服务器', time:new Date(), txt:evt.data, type:0})
-            //         that.loading = false;
-            //     };
-                
-            //     ws.onclose = function(){ 
-            //         that.reMsg = '服务器已断开连接...';
-            //         that.chatList.push({name:'服务器', time:new Date(), txt:'服务器已断开连接...', type:0})
-            //         that.loading = false;
-            //     };
-            // }
         }
     }
 }
@@ -92,6 +74,9 @@ export default {
     .reMsg{
         color: blue;
         padding: 0 15px;
+    }
+    .msg{
+        box-shadow: 10px 10px 5px #e5e5e5;
     }
     .chats{
         border: 1px solid #e5e5e5;

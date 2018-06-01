@@ -102,29 +102,14 @@ WSGI_APPLICATION = 'server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'blog',
-#         'USER': 'root',  
-#         # 'PASSWORD': 'dengxia',  
-#         'PASSWORD': 'root', 
-#         'HOST': '127.0.0.1',  
-#         'PORT': '3306', 
-#         'CHARSET': 'utf8',
-#         'OPTIONS':{
-#             'init_command':"SET sql_mode='STRICT_TRANS_TABLES', character_set_connection=utf8",
-#         },
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'amortop_blog',
-        'USER': 'amortop_root',  
-        'PASSWORD': 'dengxia0108', 
-        'HOST': '96.44.128.139',  
+        'NAME': 'blog',
+        'USER': 'root',  
+        # 'PASSWORD': 'dengxia',  
+        'PASSWORD': 'root', 
+        'HOST': '127.0.0.1',  
         'PORT': '3306', 
         'CHARSET': 'utf8',
         'OPTIONS':{
@@ -132,6 +117,21 @@ DATABASES = {
         },
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'amortop_blog',
+#         'USER': 'amortop_root',  
+#         'PASSWORD': 'dengxia0108', 
+#         'HOST': 'localhost',  
+#         'PORT': '3306', 
+#         'CHARSET': 'utf8',
+#         'OPTIONS':{
+#             'init_command':"SET sql_mode='STRICT_TRANS_TABLES', character_set_connection=utf8",
+#         },
+#     }
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -148,9 +148,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 

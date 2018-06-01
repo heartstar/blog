@@ -31,6 +31,11 @@ export const delArticle = (id) =>{
 }
 
 /*获取图片*/
-export const getImage = (id) =>{
+export const getImage = (json) =>{
     return request('/blog/api/image/query', json);
+}
+
+/*发送消息*/
+export const sendMsg = (json) =>{
+    return request('/blog/api/msg/send', json);
 }
