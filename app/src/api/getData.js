@@ -39,3 +39,13 @@ export const getImage = (json) =>{
 export const sendMsg = (json) =>{
     return request('/blog/api/msg/send', json);
 }
+
+/*获取工具集*/
+export const getTools = (json) =>{
+    return request('/blog/api/tools/query', json);
+}
+
+/*获取电影集*/
+export const getMovies = (json) =>{
+    return request('/blog/api/movie/query', json);
+}

@@ -29,9 +29,17 @@ export const asyncRouterMap = [
 
     //小工具
     {   
-        path: '/tools', component: Layout,
+        path: '/', component: Layout,
         children: [
-            {path: '/toolset', component: _import('tools/toolset'), name: 'toolset', meta: {title: 'toolset', keepAlive: false}},
+            {path: '/tools', component: _import('tools/toolset'), name: 'toolset', meta: {title: 'toolset', keepAlive: false}},
+        ]
+    },
+
+    //电影
+    {   
+        path: '', component: Layout,
+        children: [
+            {path: '/movie', component: _import('movie/movies'), name: 'movies', meta: {title: 'movies', keepAlive: false}},
         ]
     },
 

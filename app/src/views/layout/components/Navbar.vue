@@ -1,28 +1,23 @@
 <template>
     <div class="menu" ref="elMenu">
-        <!-- <ul>
-            <li><router-link :to="{path: '/'}" >首页</router-link></li>
-            <li><router-link :to="{path: '/article'}" >随手小记</router-link></li>
-            <li><router-link :to="{path: '/toolset'}" >小工具</router-link></li>
-        </ul>
-        <el-button type="primary" size="mini">Menu</el-button> -->
-    <div class="demo">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="navbar">
-                        <el-button type="primary" size="mini">Menu</el-button>
-                        <ul class="menu">
-                            <li><router-link :to="{path: '/'}" class="fa fa-home" title="首页"></router-link></li>
-                            <li><router-link :to="{path: '/article'}" class="fa fa-book" title="随手小记"></router-link></li>
-                            <li><router-link :to="{path: '/toolset'}" class="fa fa-wrench" title="小工具"></router-link></li>
-                            <li><router-link :to="{path: '/games'}" class="fa fa-gamepad" title="小游戏"></router-link></li>
-                        </ul>
+        <div class="demo">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="navbar">
+                            <el-button type="primary" size="mini">Menu</el-button>
+                            <ul class="menu">
+                                <li><router-link :to="{path: '/'}" class="fa fa-home" title="首页"></router-link></li>
+                                <li><router-link :to="{path: '/article'}" class="fa fa-book" title="随手小记"></router-link></li>
+                                <li><router-link :to="{path: '/tools'}" class="fa fa-wrench" title="小工具"></router-link></li>
+                                <li><router-link :to="{path: '/movie'}" class="fa fa-video-camera" title="休闲一刻"></router-link></li>
+                                <li><router-link :to="{path: '/games'}" class="fa fa-gamepad" title="小游戏"></router-link></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </template>
 
@@ -143,5 +138,13 @@ export default {
 .navbar:hover .menu li:nth-child(4) a{
     transition-delay: 0.16s;
     transform: rotate(515deg);
+}
+.navbar:hover .menu li:nth-child(5){
+    transition-delay: 0.1s;
+    transform: rotate(245deg);
+}
+.navbar:hover .menu li:nth-child(5) a{
+    transition-delay: 0.2s;
+    transform: rotate(475deg);
 }
 </style>
