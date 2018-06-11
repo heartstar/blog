@@ -48,17 +48,17 @@ export default {
                         this.ruleForm.password = null;
                         this.$nextTick(() =>{
                             this.$refs.ruleForm.resetFields();
-                        }) 
+                        })
                     } else {
                         this.$store.dispatch('setLogin', true);
-                        this.$router.push({ path: '/admin' })
+                        this.$router.push({ path: '/admin' });
                     }
                 } else {
                     return false;
-                }   
-            }) 
+                }
+            })
         }
-        
+
     }
 }
 </script>
