@@ -30,6 +30,11 @@ export const delArticle = (id) => {
 	return request('/blog/api/article/delete?id=' + id)
 }
 
+/* 获取首页 */
+export const getIndex = (json) => {
+	return request('/blog/api/index', json)
+}
+
 /* 获取图片 */
 export const getImage = (json) => {
 	return request('/blog/api/image/query', json)

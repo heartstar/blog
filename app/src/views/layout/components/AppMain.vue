@@ -1,5 +1,6 @@
 <template>
 	<div class="app-main">
+
 		<transition name="fade" mode="out-in">
 			<router-view></router-view>
 			<!-- <keep-alive :include='cachedViews'>
@@ -10,13 +11,20 @@
 </template>
 
 <script>
+import { getIndex } from '@/api/getData'
 export default {
 	name: 'AppMain',
 	data(){
 		return {
 			bodyHeight:0
 		}
-	},
+    },
+    
+    mounted(){
+        getIndex().then(res =>{
+            console.log(res);
+        }).catch(err =>{})
+    }
 }
 </script>
 

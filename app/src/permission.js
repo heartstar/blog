@@ -6,7 +6,7 @@ import 'nprogress/nprogress.css'// Progress 进度条样式
 router.beforeEach((to, from, next) => {
 	NProgress.start()
 	if (to.path === '/admin' && !store.getters.isLogin) {
-		next({ path: '/admin/login' })
+		next({ path: '/blog/admin/login' })
 		NProgress.done()
 	} else {
 		next()

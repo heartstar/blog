@@ -7,11 +7,11 @@
 						<div class="navbar">
 							<el-button type="primary" size="mini">Menu</el-button>
 							<ul class="menu">
-								<li><router-link :to="{path: '/'}" class="fa fa-home" title="首页"></router-link></li>
-								<li><router-link :to="{path: '/article'}" class="fa fa-book" title="随手小记"></router-link></li>
-								<li><router-link :to="{path: '/tools'}" class="fa fa-wrench" title="小工具"></router-link></li>
-								<li><router-link :to="{path: '/movie'}" class="fa fa-video-camera" title="休闲一刻"></router-link></li>
-								<li><router-link :to="{path: '/games'}" class="fa fa-gamepad" title="小游戏"></router-link></li>
+								<li><router-link :to="{path: '/blog'}" class="fa fa-home" title="首页"></router-link></li>
+								<li><router-link :to="{path: '/blog/article'}" class="fa fa-book" title="随手小记"></router-link></li>
+								<li><router-link :to="{path: '/blog/tools'}" class="fa fa-wrench" title="小工具"></router-link></li>
+								<li><router-link :to="{path: '/blog/movie'}" class="fa fa-video-camera" title="休闲一刻"></router-link></li>
+								<li><router-link :to="{path: '/blog/games'}" class="fa fa-gamepad" title="小游戏"></router-link></li>
 							</ul>
 						</div>
 					</div>
